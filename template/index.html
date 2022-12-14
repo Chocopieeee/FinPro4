@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Credit Card Segementation</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+
+    <style>
+      main{
+        background-color: white;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 100px;
+        width: 60%;
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+
+  <body style="background-image: url('/static/bank.jpg'); background-repeat: no-repeat; background-size: cover;">
+    
+    <main>
+
+      <div class="shadow p-3 mb-5 bg-body rounded">
+        <div class="p-3 mb-2 bg-white text-dark" style="text-align: center;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z"/>
+            <path d="M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z"/>
+            <path d="M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z"/>
+            <path d="M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z"/>
+          </svg>
+          <h2>
+
+            Customer Segmentation from Credit Card's Transaction
+
+          </h2>
+          <p class="lead">Fill your credit card transaction's detail</p>
+          
+        </div>
+
+        <div class="p-3 mb-2 bg-white text-dark">
+          <form class="row g-3" action="{{url_for('predict')}}" method="post">
+              <div class="row g-3">
+
+                <div class="col-12">
+                  <label for="inputBalance" class="form-label">BALANCE</label>
+                  <input 
+                  type="text"
+                  class="form-control"
+                  name="balance"
+                  placeholder="$"
+                  value=""
+                  required>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="inputBalanceFrequency" class="form-label">BALANCE FREQUENCY</label>
+                  <input 
+                  type="text"
+                  class="form-control"
+                  name="balanceFrequency"
+                  placeholder="0~1"
+                  value=""
+                  required>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="inputPurchases" class="form-label">PURCHASES</label>
+                  <input 
+                  type="text"
+                  class="form-control"
+                  name="purchases"
+                  placeholder="$"
+                  value=""
+                  required>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="inputONEOFFPURCHASES" class="form-label">ONE OFF PURCHASES</label>
+                  <input 
+                  type="text"
+                  class="form-control"
+                  name="ONEOFFPURCHASES"
+                  placeholder="$"
+                  value=""
+                  required>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="inputINSTALLMENTSPURCHASES" class="form-label">INSTALLMENTS PURCHASES</label>
+                  <input 
+                  type="text"
+                  class="form-control"
+                  name="INSTALLMENTSPURCHASES"
+                  placeholder="$"
+                  value=""
+                  required>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="inputCASHADVANCE" class="form-label">CASH ADVANCE</label>
+                  <input 
+                  type="text"
+                  class="form-control"
+                  name="CASHADVANCE"
+                  placeholder="$"
+                  value=""
+                  required>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="inputPURCHASESFREQUENCY" class="form-label">PURCHASES FREQUENCY</label>
+                  <input 
+                  type="text"
+                  class="form-control"
+                  name="PURCHASESFREQUENCY"
+                  placeholder="0~1"
+                  value=""
+                  required>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="inputONEOFFPURCHASESFREQUENCY" class="form-label">ONE OFF PURCHASES FREQUENCY</label>
+                  <input 
+                  type="text"
+                  class="form-control"
+                  name="ONEOFFPURCHASESFREQUENCY"
+                  placeholder="0~1"
+                  value=""
+                  required>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="inputPURCHASESINSTALLMENTSFREQUENCY" class="form-label">PURCHASES INSTALLMENTS FREQUENCY</label>
+                  <input 
+                  type="text"
+                  class="form-control"
+                  name="PURCHASESINSTALLMENTSFREQUENCY"
+                  placeholder="0~1"
+                  value=""
+                  required>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="inputCASHADVANCEFREQUENCY" class="form-label">CASH ADVANCE FREQUENCY</label>
+                  <input 
+                  type="text"
+                  class="form-control"
+                  name="CASHADVANCEFREQUENCY"
+                  placeholder="frequency the cash in advance paid"
+                  value=""
+                  required>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="inputCASHADVANCETRX" class="form-label">CASH ADVANCE TRX</label>
+                  <input 
+                  type="text"
+                  class="form-control"
+                  name="CASHADVANCETRX"
+                  placeholder="number of transactions"
+                  value=""
+                  required>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="inputPURCHASESTRX" class="form-label">PURCHASES TRX</label>
+                  <input 
+                  type="text"
+                  class="form-control"
+                  name="PURCHASESTRX"
+                  placeholder="number of purchase transactions"
+                  value=""
+                  required>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="inputCREDITLIMIT" class="form-label">CREDIT LIMIT</label>
+                  <input 
+                  type="text"
+                  class="form-control"
+                  name="CREDITLIMIT"
+                  placeholder="$"
+                  value=""
+                  required>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="inputPAYMENTS" class="form-label">PAYMENTS</label>
+                  <input 
+                  type="text"
+                  class="form-control"
+                  name="PAYMENTS"
+                  placeholder="$"
+                  value=""
+                  required>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="inputMINIMUMPAYMENTS" class="form-label">MINIMUM PAYMENTS</label>
+                  <input 
+                  type="text"
+                  class="form-control"
+                  name="MINIMUMPAYMENTS"
+                  placeholder="$"
+                  value=""
+                  required>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="inputPRCFULLPAYMENT" class="form-label">PRC FULL PAYMENT</label>
+                  <input 
+                  type="text"
+                  class="form-control"
+                  name="PRCFULLPAYMENT"
+                  placeholder="percent (%)"
+                  value=""
+                  required>
+                </div>
+
+                <div class="col-md-6">
+                  <label for="inputTENURE" class="form-label">TENURE</label>
+                  <input 
+                  type="text"
+                  class="form-control"
+                  name="TENURE"
+                  placeholder=""
+                  value=""
+                  required>
+                </div>
+
+                <p>*0 = not frequent, 1 = frequent</p>
+              </div>
+
+              <button
+                class="w-100 btn btn-primary btn-lg"
+                onclick="run()"
+                type="submit"
+                >
+                Analyze
+                </button>
+                <div class="form-btn">
+                  <p>{{result_text}}</p>
+                </div>
+                
+          </form>
+        </div>
+      </div>
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  </body>
+</html>
